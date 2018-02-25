@@ -1,37 +1,63 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   place.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/02/25 19:06:10 by vlay              #+#    #+#             */
+/*   Updated: 2018/02/25 20:49:49 by vlay             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 #include <limits.h>
-#include <stdio.h>
 
-intmax_t	possible(t_info *info
+static inline int		check(t_info *info
+						, char map, char piece, unsigned *touch)
+{
+	if ((map == info->opponent || !map)
+		&& piece == '*')
+		return (-1);
+	if (map == info->player && piece == '*')
+		(*touch)++;
+	if (*touch > 1)
+		return (-1);
+	return (1);
+}
+
+static inline int		score_it(char map, char piece, int hotmap)
+{
+	if (map == '.' && piece == '*')
+		return (hotmap);
+	return (0);
+}
+
+static inline intmax_t	possible(t_info *info
 	, int hotmap[info->hauteur + 1][info->largeur + 1]
 	, char map[info->hauteur + 1][info->largeur + 1]
-	, int j, int i
-	, int fd)
+	, int ji[2])
 {
 	unsigned	touch;
 	intmax_t	score;
-	int	x;
-	int	y;
+	int			x;
+	int			y;
 
 	y = 0;
 	score = 0;
 	touch = 0;
-	while (map[j + y] && info->piece.r_y + y < info->piece.piece_y)
+	while (map[ji[0] + y] && info->piece.r_y + y < info->piece.piece_y)
 	{
 		x = 0;
-		while (map[j + y][i + x] && info->piece.r_x + x < info->piece.piece_x)
+		while (info->piece.r_x + x < info->piece.piece_x)
 		{
-			if (map[j + y][i + x] == info->opponent
-				&& info->piece.piece[info->piece.r_y + y][info->piece.r_x + x] == '*')
+			if (check(info, map[ji[0] + y][ji[1] + x]
+				, info->piece.piece[info->piece.r_y + y][info->piece.r_x + x]
+				, &touch) == -1)
 				return (-1);
-			if (map[j + y][i + x] == info->player
-				&& info->piece.piece[info->piece.r_y + y][info->piece.r_x + x] == '*')
-				touch++;
-			if (touch > 1)
-				return (-1);
-			if (map[j + y][i + x] == '.'
-				&& info->piece.piece[info->piece.r_y + y][info->piece.r_x + x] == '*')
-				score += hotmap[j + y][i + x];
+			score += score_it(map[ji[0] + y][ji[1] + x]
+				, info->piece.piece[info->piece.r_y + y][info->piece.r_x + x]
+				, hotmap[ji[0] + y][ji[1] + x]);
 			x++;
 		}
 		y++;
@@ -39,39 +65,41 @@ intmax_t	possible(t_info *info
 	return ((touch == 1) ? score : -1);
 }
 
-int	place(t_info *info
-	, int hotmap[info->hauteur + 1][info->largeur + 1]
-	, char map[info->hauteur + 1][info->largeur + 1]
-	, int fd)
+static inline void		init_place(int ji[2], intmax_t *max, t_best *best)
 {
-	int	i;
-	int	j;
+	ji[0] = 0;
+	*max = INT_MAX;
+	best->i = 0;
+	best->j = 0;
+}
+
+int						place(t_info *info
+	, int hotmap[info->hauteur + 1][info->largeur + 1]
+	, char map[info->hauteur + 1][info->largeur + 1])
+{
+	int			ji[2];
 	intmax_t	max;
 	intmax_t	score;
-	t_best	best;
+	t_best		best;
 
-	j = 0;
-	max = INT_MAX;
-	best.i = 0;
-	best.j = 0;
-	while (map[j] && j + info->piece.hauteur <= info->hauteur)
+	init_place(ji, &max, &best);
+	while (map[ji[0]] && ji[0] + info->piece.hauteur <= info->hauteur)
 	{
-		i = 0;
-		while (map[j][i] && i + info->piece.largeur <= info->largeur)
+		ji[1] = 0;
+		while (map[ji[0]][ji[1]]
+			&& ji[1] + info->piece.largeur <= info->largeur)
 		{
-			if ((score = possible(info, hotmap, map, j , i, fd)) >= 0 && score <= max)
+			if ((score = possible(info, hotmap, map, ji)) >= 0 && score < max)
 			{
 				max = score;
-				best.j = j - info->piece.r_y;
-				best.i = i - info->piece.r_x;
+				best.j = ji[0] - info->piece.r_y;
+				best.i = ji[1] - info->piece.r_x;
 			}
-			i++;
+			ji[1]++;
 		}
-		j++;
+		ji[0]++;
 	}
-	dprintf(fd, "SCORE = %jd | PLACEMENT = %d %d\n", max, best.j, best.i);
 	(max >= INT_MAX - 1) ?
-	ft_printf("0 0\n") :
-	ft_printf("%d %d\n", best.j, best.i);
+	ft_printf("0 0\n") : ft_printf("%d %d\n", best.j, best.i);
 	return ((max >= INT_MAX - 1) ? 0 : 1);
 }

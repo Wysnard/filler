@@ -1,0 +1,13 @@
+a.out
+*.o
+.DS_Store
+*~
+tests.c
+test*
+lem-in
+libft.a
+.obj
+Maps
+Lem-in-checker
+Result
+*.dSYM

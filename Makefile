@@ -6,7 +6,7 @@
 #    By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/18 21:06:30 by vlay              #+#    #+#              #
-#    Updated: 2018/02/24 21:16:32 by vlay             ###   ########.fr        #
+#    Updated: 2018/02/25 19:01:11 by vlay             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ INCLUDE_PATH = includes/
 SRC_FILE = main.c \
 					map.c \
 					piece.c \
-					place.c
+					place.c \
+					distcalc.c
 
 SRC = $(SRC_FILE:%.c=$(SRC_PATH)%.c)
 
