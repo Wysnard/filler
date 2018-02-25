@@ -4,10 +4,10 @@ a.out
 *~
 tests.c
 test*
-lem-in
+filler_vm
+vlay.filler
 libft.a
 .obj
 Maps
-Lem-in-checker
 Result
 *.dSYM
