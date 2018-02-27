@@ -6,7 +6,7 @@
 #    By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/18 21:34:53 by vlay              #+#    #+#              #
-#    Updated: 2018/02/25 16:44:30 by vlay             ###   ########.fr        #
+#    Updated: 2018/02/27 19:04:10 by vlay             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ LIBFT_FILE = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c \
 		ft_wcsjoinfree.c ft_strjoinpush.c ft_strchri.c \
 		ft_qsort.c ft_opt.c ft_strmultijoin.c \
 		ft_uintlen.c ft_intchri.c ft_intgetmin.c \
-		ft_strclen.c ft_tabdel.c \
+		ft_strclen.c ft_tabdel.c ft_strrchri.c \
 		ft_pileadd.c ft_pileinit.c ft_piledel.c \
 		ft_pilepushadd.c ft_pilepush.c \
 		ft_pilecadd.c ft_pilecdel.c \

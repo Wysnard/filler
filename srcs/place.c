@@ -6,7 +6,7 @@
 /*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 19:06:10 by vlay              #+#    #+#             */
-/*   Updated: 2018/02/25 20:49:49 by vlay             ###   ########.fr       */
+/*   Updated: 2018/02/27 21:34:22 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,14 @@ static inline intmax_t	possible(t_info *info
 	y = 0;
 	score = 0;
 	touch = 0;
-	while (map[ji[0] + y] && info->piece.r_y + y < info->piece.piece_y)
+	while (map[ji[0] + y]
+		&& info->piece.piece[info->piece.r_y + y]
+		&& info->piece.r_y + y < info->piece.piece_y)
 	{
 		x = 0;
-		while (info->piece.r_x + x < info->piece.piece_x)
+		while (map[ji[0] + y][ji[1] + x]
+			&& info->piece.piece[info->piece.r_y + y][info->piece.r_x + x]
+			&& info->piece.r_x + x < info->piece.piece_x)
 		{
 			if (check(info, map[ji[0] + y][ji[1] + x]
 				, info->piece.piece[info->piece.r_y + y][info->piece.r_x + x]
@@ -83,11 +87,11 @@ int						place(t_info *info
 	t_best		best;
 
 	init_place(ji, &max, &best);
-	while (map[ji[0]] && ji[0] + info->piece.hauteur <= info->hauteur)
+	while (map[ji[0]] && ji[0] + info->piece.hauteur < info->hauteur)
 	{
 		ji[1] = 0;
 		while (map[ji[0]][ji[1]]
-			&& ji[1] + info->piece.largeur <= info->largeur)
+			&& ji[1] + info->piece.largeur < info->largeur)
 		{
 			if ((score = possible(info, hotmap, map, ji)) >= 0 && score < max)
 			{

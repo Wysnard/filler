@@ -6,7 +6,7 @@
 /*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 17:06:53 by vlay              #+#    #+#             */
-/*   Updated: 2018/02/25 16:43:43 by vlay             ###   ########.fr       */
+/*   Updated: 2018/02/27 19:41:15 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,7 @@ size_t				ft_intchri(int *str, int c, size_t len);
 intmax_t			ft_intgetmin(unsigned nb, ...);
 size_t				ft_strclen(char *str, int c);
 void				ft_tabdel(char **tab);
+size_t				ft_strrchri(const char *str, int c);
 
 void				ft_pileadd(t_pile *pile, void *info, size_t content_size);
 t_pile				*ft_pileinit(void);

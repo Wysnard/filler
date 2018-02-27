@@ -6,7 +6,7 @@
 /*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 18:52:45 by vlay              #+#    #+#             */
-/*   Updated: 2018/02/25 20:29:36 by vlay             ###   ########.fr       */
+/*   Updated: 2018/02/27 21:33:40 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ int			ft_solve_it(t_info *info)
 	int			hotmap[info->hauteur + 1][info->largeur + 1];
 
 	i = 0;
-	get_next_line(0, &line);
-	free(line);
+	while (get_next_line(0, &line) <= 0)
+		if (line)
+			free(line);
 	while (i < info->hauteur)
 	{
 		while (get_next_line(0, &line) <= 0)

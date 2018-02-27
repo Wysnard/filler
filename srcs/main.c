@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlay <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 18:52:29 by vlay              #+#    #+#             */
-/*   Updated: 2018/02/25 18:52:30 by vlay             ###   ########.fr       */
+/*   Updated: 2018/02/25 21:31:25 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,17 @@ void	ft_init(t_info *info)
 	free(line);
 }
 
+void	free_piece(t_info *info)
+{
+	unsigned	i;
+
+	i = 0;
+	while (info->piece.piece[i])
+		free(info->piece.piece[i++]);
+	free(info->piece.piece);
+	info->piece.piece = NULL;
+}
+
 int		main(void)
 {
 	t_info	info;
@@ -49,6 +60,7 @@ int		main(void)
 		}
 		ft_get_info_map(&info);
 		solved = ft_solve_it(&info);
+		free_piece(&info);
 	}
 	return (0);
 }
