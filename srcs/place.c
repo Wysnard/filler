@@ -6,7 +6,7 @@
 /*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 19:06:10 by vlay              #+#    #+#             */
-/*   Updated: 2018/02/27 21:34:22 by vlay             ###   ########.fr       */
+/*   Updated: 2018/02/27 22:24:30 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static inline void		init_place(int ji[2], intmax_t *max, t_best *best)
 	best->j = 0;
 }
 
-int						place(t_info *info
+int						place(int fd, t_info *info
 	, int hotmap[info->hauteur + 1][info->largeur + 1]
 	, char map[info->hauteur + 1][info->largeur + 1])
 {

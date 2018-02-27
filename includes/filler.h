@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlay <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 20:56:29 by vlay              #+#    #+#             */
-/*   Updated: 2018/02/25 20:57:19 by vlay             ###   ########.fr       */
+/*   Updated: 2018/02/27 22:24:35 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void			ft_inttabprt(t_info *info);
 int				ft_simple_solve(t_info *info);
 void			ft_getinfopiece(t_info *info);
 void			standard_it(t_info *info);
-int				place(t_info *info
+int				place(int fd, t_info *info
 				, int hotmap[info->hauteur + 1][info->largeur + 1]
 				, char map[info->hauteur + 1][info->largeur + 1]);
 void			distcalc(t_info *info
