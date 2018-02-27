@@ -6,7 +6,7 @@
 /*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 19:06:10 by vlay              #+#    #+#             */
-/*   Updated: 2018/02/27 22:24:30 by vlay             ###   ########.fr       */
+/*   Updated: 2018/02/27 22:39:28 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ static inline intmax_t	possible(t_info *info
 	touch = 0;
 	while (map[ji[0] + y]
 		&& info->piece.piece[info->piece.r_y + y]
-		&& info->piece.r_y + y < info->piece.piece_y)
+		&& info->piece.r_y + y <= (int)info->piece.hauteur)
 	{
 		x = 0;
 		while (map[ji[0] + y][ji[1] + x]
 			&& info->piece.piece[info->piece.r_y + y][info->piece.r_x + x]
-			&& info->piece.r_x + x < info->piece.piece_x)
+			&& info->piece.r_x + x <= (int)info->piece.largeur)
 		{
 			if (check(info, map[ji[0] + y][ji[1] + x]
 				, info->piece.piece[info->piece.r_y + y][info->piece.r_x + x]
