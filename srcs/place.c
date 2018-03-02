@@ -6,7 +6,7 @@
 /*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 19:06:10 by vlay              #+#    #+#             */
-/*   Updated: 2018/02/27 22:39:28 by vlay             ###   ########.fr       */
+/*   Updated: 2018/03/02 22:17:49 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,5 @@ int						place(int fd, t_info *info
 	}
 	(max >= INT_MAX - 1) ?
 	ft_printf("0 0\n") : ft_printf("%d %d\n", best.j, best.i);
-	return ((max >= INT_MAX - 1) ? 0 : 1);
+	return ((max >= INT_MAX - 1 || win(info, map)) ? 0 : 1);
 }

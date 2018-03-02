@@ -6,7 +6,7 @@
 /*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 19:04:14 by vlay              #+#    #+#             */
-/*   Updated: 2018/02/27 22:38:59 by vlay             ###   ########.fr       */
+/*   Updated: 2018/03/02 22:10:15 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ void	standard_it(t_info *info)
 				info->piece.largeur = ft_strrchri(info->piece.piece[j], '*');
 			info->piece.hauteur = j;
 		}
+		j++;
+	}
+	j = info->piece.hauteur + 1;
+	while (info->piece.piece[j])
+	{
+		free(info->piece.piece[j]);
+		info->piece.piece[j] = NULL;
 		j++;
 	}
 }

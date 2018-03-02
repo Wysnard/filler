@@ -6,7 +6,7 @@
 /*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 18:52:45 by vlay              #+#    #+#             */
-/*   Updated: 2018/02/27 22:24:43 by vlay             ###   ########.fr       */
+/*   Updated: 2018/03/02 22:08:18 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,19 @@ void	print_map(int fd, t_info *info, char map[info->hauteur + 1][info->largeur +
 	}
 }
 
+void	print_piece(int fd, t_info *info)
+{
+	unsigned	i;
+
+	i = 0;
+	while (i <= info->piece.hauteur)
+	{
+		ft_putstr_fd(info->piece.piece[i], fd);
+		ft_putchar_fd('\n', fd);
+		i++;
+	}
+}
+
 int			ft_solve_it(t_info *info)
 {
 	char		*line;
@@ -69,5 +82,7 @@ int			ft_solve_it(t_info *info)
 	ft_getinfopiece(info);
 	standard_it(info);
 	ft_putendl_fd("JE PASSE\n", fd);
+	print_map(fd, info, map);
+	print_piece(fd, info);
 	return (place(fd, info, hotmap, map));
 }
