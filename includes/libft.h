@@ -6,7 +6,7 @@
 /*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 17:06:53 by vlay              #+#    #+#             */
-/*   Updated: 2018/02/27 19:41:15 by vlay             ###   ########.fr       */
+/*   Updated: 2018/03/03 20:27:54 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <wchar.h>
 # include <stdint.h>
 # include "printf.h"
+
+# define GET_SIZE 100
 
 typedef struct		s_list
 {
