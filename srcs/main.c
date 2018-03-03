@@ -6,34 +6,50 @@
 /*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 18:52:29 by vlay              #+#    #+#             */
-/*   Updated: 2018/02/25 21:31:25 by vlay             ###   ########.fr       */
+/*   Updated: 2018/03/03 17:29:58 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+#include <stdio.h>
 
-void	ft_get_info_map(t_info *info)
+static int			ft_get_info_map(t_info *info)
 {
 	char	*line;
 
-	if (get_next_line(0, &line) && line && ft_strnequ("Plateau", line, 7))
+	if (get_next_line(0, &line) > 0 && line && ft_strnequ("Plateau", line, 7))
 	{
 		info->hauteur = ft_atoi(ft_strchr(line, ' ') + 1);
 		info->largeur = ft_atoi(ft_strrchr(line, ' ') + 1);
+		return (1);
 	}
+	return (0);
 }
 
-void	ft_init(t_info *info)
+static int			ft_init(t_info *info)
 {
 	char	*line;
 
-	get_next_line(0, &line);
-	info->player = (ft_atoi(&line[10]) == 1) ? 'O' : 'X';
-	info->opponent = (info->player == 'O') ? 'X' : 'O';
+	while (get_next_line(0, &line) < 1)
+		if (line)
+			free(line);
+	if (line && ft_strlen(line) > 11
+		&& ft_strnequ(line, "$$$ exec", 8) && ft_isdigit(line[10]))
+	{
+		info->player = (ft_atoi(&line[10]) == 1) ? 'O' : 'X';
+		info->opponent = (info->player == 'O') ? 'X' : 'O';
+	}
+	else
+	{
+		write(2, "ERROR\n", 6);
+		free(line);
+		return (0);
+	}
 	free(line);
+	return (1);
 }
 
-void	free_piece(t_info *info)
+static inline void	free_piece(t_info *info)
 {
 	unsigned	i;
 
@@ -44,23 +60,23 @@ void	free_piece(t_info *info)
 	info->piece.piece = NULL;
 }
 
-int		main(void)
+int					main(void)
 {
 	t_info	info;
 	int		solved;
 
-	ft_init(&info);
-	solved = 1;
-	while (1)
+	if (!(solved = ft_init(&info)))
+		return (1);
+	while (solved)
 	{
-		if (!solved)
+		if (!ft_get_info_map(&info))
 		{
-			ft_printf("0 0\n");
+			write(2, "ERROR\n", 6);
 			break ;
 		}
-		ft_get_info_map(&info);
 		solved = ft_solve_it(&info);
 		free_piece(&info);
 	}
+	ft_printf("0 0\n");
 	return (0);
 }
