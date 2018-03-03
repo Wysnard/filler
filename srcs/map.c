@@ -6,7 +6,7 @@
 /*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 18:52:45 by vlay              #+#    #+#             */
-/*   Updated: 2018/03/02 22:08:18 by vlay             ###   ########.fr       */
+/*   Updated: 2018/03/03 15:52:27 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,5 @@ int			ft_solve_it(t_info *info)
 	ft_putendl_fd("JE PASSE\n", fd);
 	print_map(fd, info, map);
 	print_piece(fd, info);
-	return (place(fd, info, hotmap, map));
+	return (place(info, hotmap, map));
 }

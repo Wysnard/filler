@@ -6,7 +6,7 @@
 #    By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/18 21:34:53 by vlay              #+#    #+#              #
-#    Updated: 2018/02/27 19:04:10 by vlay             ###   ########.fr        #
+#    Updated: 2018/03/03 15:57:59 by vlay             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,12 @@ NAME = libft.a
 
 CC = gcc
 
-CFLAGS = -Werror -Wall -Wextra -I../includes
+INCLUDE_PATH = ../includes
+
+INCLUDE = libft.h \
+			printf.h
+
+CFLAGS = -Werror -Wall -Wextra -I$(INCLUDE_PATH)
 
 SRC_PATH = printf/
 
@@ -89,9 +94,9 @@ SRC_FILE = printf.c \
 
 SRC = $(SRC_FILE:%.c=$(SRC_PATH)%.c)
 
-DLIST_FILE =
-
 OBJ = $(LIBFT:$(LIBFT_PATH)%.c=$(OBJ_PATH)%.o) $(SRC:$(SRC_PATH)%.c=$(OBJ_PATH)%.o)
+
+INC = $(INCLUDE:%.h=$(INCLUDE_PATH)%.h)
 
 all: $(NAME)
 

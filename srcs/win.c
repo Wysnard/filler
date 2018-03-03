@@ -12,7 +12,7 @@ int	win(t_info *info,char map[info->hauteur + 1][info->largeur + 1])
 	while (j <= info->hauteur)
 	{
 		if ((me += ft_strclen(map[j], info->player))
-		>= info->hauteur * info->largeur - (ennemy += ft_strclen(map[j], info->opponent)))
+		> (info->hauteur * info->largeur)/2)
 			return (1);
 		j++;
 	}

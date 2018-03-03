@@ -6,7 +6,7 @@
 #    By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/18 21:06:30 by vlay              #+#    #+#              #
-#    Updated: 2018/03/02 22:18:40 by vlay             ###   ########.fr        #
+#    Updated: 2018/03/03 16:00:22 by vlay             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ OBJ_PATH = obj/
 
 INCLUDE_PATH = includes/
 
+INCLUDE = filler.h
+
 SRC_FILE = main.c \
 					map.c \
 					piece.c \
@@ -37,16 +39,18 @@ SRC = $(SRC_FILE:%.c=$(SRC_PATH)%.c)
 
 OBJ = $(SRC:$(SRC_PATH)%.c=$(OBJ_PATH)%.o)
 
+INC = $(INCLUDE:%.h=$(INCLUDE_PATH)%.h)
+
 all: $(NAME)
 
-$(NAME): $(LIBFT_PATH)$(LIBFT_NAME) $(OBJ)
+$(NAME): $(LIBFT_PATH)$(LIBFT_NAME) $(OBJ) $(INC)
 	$(CC) $(CFLAGS) -o $@ $(OBJ) -I$(INCLUDE_PATH) -L$(LIBFT_PATH) -lft
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(LIBFT_PATH)$(LIBFT_NAME)
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(LIBFT_PATH)$(LIBFT_NAME) $(INCLUDE_PATH)$(INCLUDE)
 	@mkdir -p $(OBJ_PATH)
 	$(CC) -o $@ -c $< -I$(INCLUDE_PATH) $(CFLAGS)
 
-$(LIBFT_PATH)$(LIBFT_NAME):
+$(LIBFT_PATH)$(LIBFT_NAME): $(INCLUDE_PATH)libft.h
 	make -C $(LIBFT_PATH)
 
 clean:
