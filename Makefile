@@ -6,7 +6,7 @@
 #    By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/18 21:06:30 by vlay              #+#    #+#              #
-#    Updated: 2018/03/03 16:00:22 by vlay             ###   ########.fr        #
+#    Updated: 2018/03/03 18:53:27 by vlay             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ SRC_FILE = main.c \
 					piece.c \
 					place.c \
 					distcalc.c \
-					win.c
+					win.c \
+					possible.c
 
 SRC = $(SRC_FILE:%.c=$(SRC_PATH)%.c)
 

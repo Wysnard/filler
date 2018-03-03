@@ -6,14 +6,14 @@
 /*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 19:04:14 by vlay              #+#    #+#             */
-/*   Updated: 2018/03/02 22:10:15 by vlay             ###   ########.fr       */
+/*   Updated: 2018/03/03 17:33:57 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 #include <limits.h>
 
-void	ft_getinfopiece(t_info *info)
+void				ft_getinfopiece(t_info *info)
 {
 	int		i;
 	char	*line;
@@ -41,7 +41,17 @@ void	ft_getinfopiece(t_info *info)
 	info->piece.piece[i] = NULL;
 }
 
-void	standard_it(t_info *info)
+static inline void	ignore_line(t_info *info, int j)
+{
+	while (info->piece.piece[j])
+	{
+		free(info->piece.piece[j]);
+		info->piece.piece[j] = NULL;
+		j++;
+	}
+}
+
+void				standard_it(t_info *info)
 {
 	int	i;
 	int	j;
@@ -65,11 +75,5 @@ void	standard_it(t_info *info)
 		}
 		j++;
 	}
-	j = info->piece.hauteur + 1;
-	while (info->piece.piece[j])
-	{
-		free(info->piece.piece[j]);
-		info->piece.piece[j] = NULL;
-		j++;
-	}
+	ignore_line(info, info->piece.hauteur + 1);
 }

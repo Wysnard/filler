@@ -6,7 +6,7 @@
 /*   By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/25 20:56:29 by vlay              #+#    #+#             */
-/*   Updated: 2018/03/03 15:51:38 by vlay             ###   ########.fr       */
+/*   Updated: 2018/03/03 18:53:59 by vlay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,9 @@ int				place(t_info *info
 void			distcalc(t_info *info
 				, int hotmap[info->hauteur + 1][info->largeur + 1]);
 int				win(t_info *info,char map[info->hauteur + 1][info->largeur + 1]);
+intmax_t		possible(t_info *info
+				, int hotmap[info->hauteur + 1][info->largeur + 1]
+				, char map[info->hauteur + 1][info->largeur + 1]
+				, int ji[2]);
 
 #endif
