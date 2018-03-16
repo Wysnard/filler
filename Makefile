@@ -6,7 +6,7 @@
 #    By: vlay <vlay@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/18 21:06:30 by vlay              #+#    #+#              #
-#    Updated: 2018/03/03 18:53:27 by vlay             ###   ########.fr        #
+#    Updated: 2018/03/16 17:46:34 by vlay             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = vlay.filler
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Iincludes
+CFLAGS = -Wall -Wextra -Werror -Iincludes
 
 SRC_PATH = srcs/
 
